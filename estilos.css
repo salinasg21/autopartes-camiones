@@ -370,4 +370,152 @@ footer {
     background-color: #1e3a8a;
     border-color: #1e3a8a;
     color: #ffffff;
+}/* ==========================================
+   BARRA DE BENEFICIOS COMERCIALES
+   ========================================== */
+.barra-beneficios {
+    background-color: #f1f5f9;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 25px 20px;
+    margin-bottom: 30px;
+}
+
+.beneficios-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.beneficio-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+
+.beneficio-icono {
+    font-size: 2rem;
+}
+
+.beneficio-texto h4 {
+    margin: 0 0 3px 0;
+    font-size: 0.95rem;
+    color: #0f172a;
+}
+
+.beneficio-texto p {
+    margin: 0;
+    font-size: 0.82rem;
+    color: #64748b;
+    line-height: 1.2;
+}
+
+/* ==========================================
+   PIE DE PÁGINA (FOOTER)
+   ========================================== */
+.footer-principal {
+    background-color: #0f172a;
+    color: #f8fafc;
+    padding-top: 40px;
+    margin-top: 60px;
+    border-top: 4px solid #1e3a8a;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 30px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.footer-columna h3 {
+    margin-top: 0;
+    color: #ffffff;
+    font-size: 1.3rem;
+}
+
+.footer-columna h4 {
+    margin-top: 0;
+    color: #38bdf8;
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+}
+
+.footer-columna p {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.footer-badge {
+    display: inline-block;
+    background-color: #1e293b;
+    color: #38bdf8;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.footer-bottom {
+    background-color: #020617;
+    text-align: center;
+    padding: 15px 20px;
+    border-top: 1px solid #1e293b;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+/* ==========================================
+   BOTÓN FLOTANTE DE WHATSAPP
+   ========================================== */
+.wsp-flotante {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25d366;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    z-index: 9999;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wsp-flotante:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+.wsp-icono {
+    font-size: 1.3rem;
+}
+
+@media (max-width: 600px) {
+    .wsp-texto {
+        display: none; /* En pantallas de celular muy chicas muestra solo el ícono para no molestar */
+    }
+    .wsp-flotante {
+        padding: 15px;
+        border-radius: 50%;
+    }
 }

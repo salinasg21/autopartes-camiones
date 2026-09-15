@@ -1,55 +1,64 @@
-// Configuración de la tienda
-const NUMERO_WHATSAPP = "5491112345678"; // Reemplazá con tu número real (código de país 54 + 9 + área + número)
+// ==========================================
+// 1. CONFIGURACIÓN COMERCIAL (TU CELULAR)
+// ==========================================
+// Reemplazá este número por tu celular real de ventas
+const NUMERO_WHATSAPP = "5491141701935"; 
 
+// ==========================================
+// 2. LÓGICA DEL CARRITO DE COMPRAS
+// ==========================================
 let carrito = [];
-let total = 0;
 
-// 1. Funcionalidad para enviar consulta directa por WhatsApp
-function consultarWhatsApp(nombreProducto, oem) {
-    const mensaje = `Hola! Quisiera consultar stock y detalles sobre el repuesto: *${nombreProducto}* (OEM: ${oem}).`;
-    const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
-}
-
-// 2. Funcionalidad del Carrito de Compras
-function agregarAlCarrito(nombreProducto, precio) {
-    carrito.push({ nombre: nombreProducto, precio: precio });
-    total += precio;
+function agregarAlCarrito(nombre, precio) {
+    carrito.push({ nombre, precio });
     actualizarCarritoUI();
 }
 
 function actualizarCarritoUI() {
     const contador = document.getElementById('contador-carrito');
-    const precioTotal = document.getElementById('total-carrito');
-    
-    if (contador && precioTotal) {
-        contador.textContent = carrito.length;
-        precioTotal.textContent = `$${total.toLocaleString('es-AR')} ARS`;
+    const totalElemento = document.getElementById('total-carrito');
+
+    if (contador && totalElemento) {
+        contador.innerText = carrito.length;
+        const total = carrito.reduce((acc, item) => acc + item.precio, 0);
+        totalElemento.innerText = `$${total.toLocaleString('es-AR')} ARS`;
     }
-}// 3. Integración y Procesamiento de Pago con Mercado Pago
+}
+
+// ==========================================
+// 3. ENVIAR CONSULTA POR WHATSAPP (BOTÓN INDIVIDUAL Y PEDIDO)
+// ==========================================
+
+// Consulta desde una tarjeta de producto individual
+function consultarWhatsApp(nombreProducto, codigoOEM) {
+    const mensaje = `Hola! Vengo de la tienda web. Quiero consultar stock y precio del repuesto: *${nombreProducto}* (OEM: *${codigoOEM}*).`;
+    const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+}
+
+// Procesar pedido completo del carrito por WhatsApp
 function procesarPagoMercadoPago() {
     if (carrito.length === 0) {
-        alert("Tu carrito está vacío. Agregá algún repuesto antes de pagar.");
+        alert("El carrito está vacío. Agregá algún repuesto antes de consultar.");
         return;
     }
 
-    // Armamos un resumen textual con lo que el cliente lleva en el carrito
-    let detallePedido = carrito.map(item => `- ${item.nombre}: $${item.precio}`).join('%0A');
-    
-    // Mensaje formateado para confirmación
-    let mensajeCobro = `Hola! Quiero abonar mi pedido por un total de *$${total.toLocaleString('es-AR')} ARS* con Mercado Pago.%0A%0A*Detalle del pedido:*%0A${detallePedido}`;
+    let listaProductos = "";
+    let total = 0;
 
-    // Opción A: Abrir chat directo con el vendedor con la solicitud de cobro armada
-    const urlMercadoPago = `https://wa.me/${NUMERO_WHATSAPP}?text=${mensajeCobro}`;
+    carrito.forEach((item, index) => {
+        listaProductos += `\n- ${item.nombre}: $${item.precio.toLocaleString('es-AR')} ARS`;
+        total += item.precio;
+    });
 
-    // Notificamos al usuario y abrimos la plataforma de cobro
-    alert(`Redirigiendo a la confirmación de pago de tu pedido ($${total.toLocaleString('es-AR')} ARS)...`);
-    window.open(urlMercadoPago, '_blank');
-}// ==========================================
+    const mensaje = `Hola! Vengo de la tienda web y me gustaría concretar la compra de los siguientes repuestos:\n${listaProductos}\n\n*Total estimado:* $${total.toLocaleString('es-AR')} ARS\n\n¿Tienen stock disponible para entrega/envío?`;
+    const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+}
+
+// ==========================================
 // 4. FILTRO DINÁMICO DE BÚSQUEDA Y CATEGORÍAS
 // ==========================================
-
-// Buscador en tiempo real
 const inputBuscador = document.getElementById('input-buscador');
 
 if (inputBuscador) {
@@ -74,16 +83,13 @@ function filtrarProductos(texto) {
         }
     });
 
-    // Mostrar u ocultar mensaje de "Sin resultados"
     const mensajeSinResultados = document.getElementById('sin-resultados');
     if (mensajeSinResultados) {
         mensajeSinResultados.style.display = encontrados === 0 ? 'block' : 'none';
     }
 }
 
-// Filtro rápido por botones de Categoria
 function filtrarPorCategoria(categoria, botonPresionado) {
-    // Cambiar la clase activa de los botones
     const botones = document.querySelectorAll('.btn-filtro');
     botones.forEach(btn => btn.classList.remove('activo'));
     botonPresionado.classList.add('activo');
@@ -102,11 +108,17 @@ function filtrarPorCategoria(categoria, botonPresionado) {
         }
     });
 
-    // Limpiar el buscador de texto al hacer clic en una categoría
     if (inputBuscador) inputBuscador.value = '';
 
     const mensajeSinResultados = document.getElementById('sin-resultados');
     if (mensajeSinResultados) {
         mensajeSinResultados.style.display = encontrados === 0 ? 'block' : 'none';
     }
+// Función para el botón flotante directo
+function abrirWhatsAppFlotante(event) {
+    if (event) event.preventDefault();
+    const mensaje = "Hola! Vengo de la tienda web. Necesito realizar una consulta comercial sobre un repuesto.";
+    const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+}
 }
