@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repuestos para Camiones | Venta a todo el país</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repuestos para Camiones | Venta a todo el país</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- Barra Superior de Confianza -->
+    <div class="top-bar">
+        <span>🚚 Envíos a todo el país | 💳 Cuotas con Mercado Pago | 🛡️ Repuestos Garantizados</span>
+    </div>
+
+   <!-- Header tipo Banner de Portada -->
+    <header class="header-banner">
+        <div class="banner-container">
+            <!-- Logo Protagonista / Banner -->
+            <img src="img/logo.png" alt="Autopartes Camiones Argentina" class="logo-banner">
+        </div>
+
+        <!-- Barra de Utilidades (Buscador y Carrito) debajo del Banner -->
+        <div class="bar-utilidades">
+            <div class="utilidades-container">
+                <div class="buscador-header">
+    <input type="text" id="input-buscador" placeholder="Buscar por OEM, código o modelo de camión...">
+    <button>🔍 Buscar</button>
+</div>
+                
+                <div class="carrito-header">
+                    🛒 <span>Carrito:</span> <strong id="contador-carrito">0</strong>
+                    <span class="total-monto" id="total-carrito">$0 ARS</span>
+                    <button id="btn-pagar" onclick="procesarPagoMercadoPago()">Pagar</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Menú de Navegación -->
+    <nav>
+        <a href="#catalogo">Catálogo Completo</a>
+        <a href="#marcas">Marcas</a>
+        <a href="#garantia">Envíos y Garantía</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <main>
+       <!-- Catálogo de Productos con Filtros Dinámicos -->
+        <section id="catalogo">
+            <h2 class="titulo-seccion">Repuestos de Alta Rotación</h2>
+            <p class="subtitulo-seccion">Catálogo actualizado con stock para entrega inmediata</p>
+
+            <!-- Botones de Filtro Rápido por Categoria -->
+            <div class="filtros-categorias">
+                <button class="btn-filtro activo" onclick="filtrarPorCategoria('todos', this)">Todos</button>
+                <button class="btn-filtro" onclick="filtrarPorCategoria('filtros', this)">Filtros</button>
+                <button class="btn-filtro" onclick="filtrarPorCategoria('frenos', this)">Frenos</button>
+                <button class="btn-filtro" onclick="filtrarPorCategoria('iluminacion', this)">Iluminación</button>
+            </div>
+
+            <div class="productos-grilla" id="grilla-productos">
+                
+                <!-- Producto 1 -->
+                <article class="producto-card" data-categoria="filtros" data-busqueda="kit de filtros aceite aire combustible flt-9082 mercedes-benz vw scania">
+                    <span class="badge-stock">Stock Disponible</span>
+                    <div class="img-container">
+                        <img src="img/filtros.jpg" alt="Kit de Filtros">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Kit de Filtros (Aceite, Aire, Combustible)</h3>
+                        <p class="oem"><strong>OEM:</strong> FLT-9082</p>
+                        <p class="compatibilidad">Compatible: Mercedes-Benz / VW / Scania</p>
+                        <p class="precio">$85.000 ARS</p>
+                        <div class="acciones-card">
+                            <button class="btn-carrito" onclick="agregarAlCarrito('Kit de Filtros', 85000)">Añadir al carrito</button>
+                            <button class="btn-wsp" onclick="consultarWhatsApp('Kit de Filtros', 'FLT-9082')">💬 WhatsApp</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Producto 2 -->
+                <article class="producto-card" data-categoria="frenos" data-busqueda="juego de pastillas de freno delanteras frn-4412 volvo iveco">
+                    <span class="badge-stock">Stock Disponible</span>
+                    <div class="img-container">
+                        <img src="img/frenos.jpg" alt="Pastillas de Freno">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Juego de Pastillas de Freno Delanteras</h3>
+                        <p class="oem"><strong>OEM:</strong> FRN-4412</p>
+                        <p class="compatibilidad">Compatible: Volvo / Iveco</p>
+                        <p class="precio">$120.000 ARS</p>
+                        <div class="acciones-card">
+                            <button class="btn-carrito" onclick="agregarAlCarrito('Pastillas de Freno', 120000)">Añadir al carrito</button>
+                            <button class="btn-wsp" onclick="consultarWhatsApp('Pastillas de Freno', 'FRN-4412')">💬 WhatsApp</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Producto 3 -->
+                <article class="producto-card" data-categoria="iluminacion" data-busqueda="faros traseros led multimarca 24v ilm-1020 universal">
+                    <span class="badge-stock">Stock Disponible</span>
+                    <div class="img-container">
+                        <img src="img/luces.jpg" alt="Faros LED">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Faros Traseros LED Multimarca 24V</h3>
+                        <p class="oem"><strong>OEM:</strong> ILM-1020</p>
+                        <p class="compatibilidad">Universal 24V</p>
+                        <p class="precio">$45.000 ARS</p>
+                        <div class="acciones-card">
+                            <button class="btn-carrito" onclick="agregarAlCarrito('Faros Traseros LED', 45000)">Añadir al carrito</button>
+                            <button class="btn-wsp" onclick="consultarWhatsApp('Faros Traseros LED', 'ILM-1020')">💬 WhatsApp</button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Mensaje por si no se encuentra ningún producto -->
+            <p id="sin-resultados" style="display: none; text-align: center; font-weight: bold; color: #64748b; margin-top: 30px;">
+                🔍 No encontramos repuestos que coincidan con tu búsqueda. Intentá buscar por OEM o marca.
+            </p>
+        </section>
+
+        <!-- Bloque de Garantías -->
+        <section id="garantia" class="seccion-confianza">
+            <div class="item-confianza">
+                <h3>🚚 Envíos Nacionales</h3>
+                <p>Despachamos por expreso o correo a cualquier provincia en 24/48 hs.</p>
+            </div>
+            <div class="item-confianza">
+                <h3>🛡️ Garantía de Calidad</h3>
+                <p>Repuestos probados con especificación y tolerancia OEM de fábrica.</p>
+            </div>
+            <div class="item-confianza">
+                <h3>💳 Pagos Protegidos</h3>
+                <p>Aboná de forma segura a través de Mercado Pago en cuotas.</p>
+            </div>
+        </section>
+
+        <!-- Formulario de Contacto -->
+        <section id="contacto" class="seccion-contacto">
+            <h2>¿No encontrás el número de pieza?</h2>
+            <p>Envianos el número de chasis (VIN) y te confirmamos compatibilidad al instante.</p>
+            <form class="form-contacto">
+                <input type="text" placeholder="Tu nombre completo" required>
+                <input type="tel" placeholder="Teléfono / WhatsApp de contacto" required>
+                <textarea rows="3" placeholder="Ingresá el chasis o repuesto que buscás..."></textarea>
+                <button type="submit">Enviar Consulta Técnica</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Autopartes de Camiones Argentina. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
