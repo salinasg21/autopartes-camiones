@@ -121,4 +121,15 @@ function abrirWhatsAppFlotante(event) {
     const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
 }
+}// Función para mostrar notificación flotante estilo Toast
+function mostrarNotificacion(mensaje) {
+    const toast = document.getElementById('toast-notificacion');
+    if (!toast) return;
+
+    toast.innerHTML = `✓ ${mensaje}`;
+    toast.classList.add('activo');
+
+    setTimeout(() => {
+        toast.classList.remove('activo');
+    }, 3000);
 }

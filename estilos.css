@@ -518,4 +518,276 @@ footer {
         padding: 15px;
         border-radius: 50%;
     }
+}/* ==========================================
+   REDISEÑO DE TARJETAS DE PRODUCTOS (GRILLA Y CARDS)
+   ========================================== */
+
+/* Contenedor principal de la grilla */
+.productos-grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    padding: 20px 0;
+}
+
+/* Tarjeta de Producto */
+.producto-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Efecto de elevación al pasar el cursor */
+.producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+/* Contenedor de la Imagen */
+.img-container {
+    width: 100%;
+    height: 200px;
+    background-color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    border-bottom: 1px solid #f1f5f9;
+    overflow: hidden;
+}
+
+.img-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Mantiene la nitidez y proporción sin deformar */
+    transition: transform 0.3s ease;
+}
+
+.producto-card:hover .img-container img {
+    transform: scale(1.05); /* Zoom suave a la imagen al hacer hover */
+}
+
+/* Contenedor de información del producto */
+.producto-info {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.producto-info h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+    line-height: 1.35;
+    /* Mantiene uniforme el alto del título */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.7em;
+}
+
+/* Estilo para Código OEM y Compatibilidad */
+.oem {
+    font-size: 0.8rem;
+    color: #475569;
+    background-color: #f1f5f9;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    display: inline-block;
+    margin-bottom: 6px;
+    width: fit-content;
+}
+
+.compatibilidad {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+/* Precio destacado */
+.precio {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #f97316; /* Naranja Mecánico destacado */
+    margin-top: auto; /* Alinea los botones perfectamente al fondo */
+    margin-bottom: 15px;
+}
+
+/* Botones dentro de la tarjeta */
+.acciones-card {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-carrito {
+    flex: 1;
+    background-color: #1e3a8a; /* Azul profesional */
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-carrito:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-carrito:active {
+    transform: scale(0.98);
+}
+
+.btn-wsp {
+    background-color: #e0f2fe;
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-wsp:hover {
+    background-color: #25d366;
+    color: #ffffff;
+    border-color: #25d366;
+}
+
+/* Ajustes para Pantallas de Celulares */
+@media (max-width: 576px) {
+    .productos-grilla {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .img-container {
+        height: 140px;
+        padding: 10px;
+    }
+
+    .producto-info {
+        padding: 12px;
+    }
+
+    .producto-info h3 {
+        font-size: 0.88rem;
+        height: 2.5em;
+    }
+
+    .precio {
+        font-size: 1.1rem;
+    }
+
+    .acciones-card {
+        flex-direction: column;
+    }
+}/* ==========================================
+   MEJORA EN EL BUSCADOR (ESTILO HERO)
+   ========================================== */
+.buscador-header {
+    display: flex;
+    flex: 1;
+    max-width: 550px;
+    background-color: #ffffff;
+    border-radius: 50px; /* Bordes redondeados modernos */
+    overflow: hidden;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+}
+
+.buscador-header:focus-within {
+    border-color: #1e3a8a;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+}
+
+.buscador-header input {
+    width: 100%;
+    border: none;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    outline: none;
+    color: #1e293b;
+    background-color: transparent;
+}
+
+.buscador-header button {
+    background-color: #1e3a8a;
+    color: #ffffff;
+    border: none;
+    padding: 0 24px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-radius: 0 50px 50px 0;
+}
+
+.buscador-header button:hover {
+    background-color: #1d4ed8;
+}
+
+/* ==========================================
+   ANIMACIÓN PULSO EN BOTÓN FLOTANTE WHATSAPP
+   ========================================== */
+.wsp-flotante {
+    animation: pulsoWsp 2.5s infinite;
+}
+
+@keyframes pulsoWsp {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* ==========================================
+   NOTIFICACIÓN FLOTANTE (TOAST)
+   ========================================== */
+.toast-notificacion {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 14px 22px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid #25d366;
+    font-weight: 600;
+    font-size: 0.9rem;
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toast-notificacion.activo {
+    opacity: 1;
+    transform: translateY(0);
 }
